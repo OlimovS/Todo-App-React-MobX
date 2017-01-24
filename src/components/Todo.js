@@ -13,7 +13,7 @@ class Todo extends Component {
     }
 
     handleRemoveTodo() {
-        this.props.removeTodo(this.props.index);
+        this.props.deleteTodo(this.props.index);
     }
 
     handleEditTodo() {
@@ -21,11 +21,11 @@ class Todo extends Component {
     }
 
     handleSaveTodo() {
-        this.props.onSaveTodo(this.refs.editTodo.value, this.props.todo.id)
+        this.props.saveTodo(this.props.todo.id, this.refs.editTodo.value)
     }
 
     handleCancelTodo() {
-        this.props.onCancelTodo(this.props.todo.id);
+        this.props.cancelEditTodo(this.props.todo.id);
     }
 
     getClassNames() {
@@ -43,20 +43,8 @@ class Todo extends Component {
     }
 
     handleEditSubmit(e) {
-        const text = this.refs.editTodo.value;
         e.preventDefault();
         this.handleSaveTodo();
-        const isFound = this.props.todos.find(todo => {
-            return todo.text === text
-        });
-
-        function isDublicate() {
-            return !text || (isFound && (isFound.id !== this.props.todo.id));
-        }
-
-        if (isDublicate.call(this)) {
-            this.handleRemoveTodo()
-        }
     }
 
     handleKeyDown(event) {

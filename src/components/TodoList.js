@@ -11,7 +11,7 @@ class TodoList extends Component {
         return (
             <ul className="list-group">
                 {
-                    this.props.todos.map((todo, index) => {
+                    this.props.filterTodo.map((todo, index) => {
                        return <Todo key={index} index={index} todo={todo} {...this.props} />
                     })
                 }

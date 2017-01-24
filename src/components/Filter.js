@@ -11,7 +11,7 @@ class Filter extends Component {
     }
 
     onFilterChange(filter) {
-        this.props.handleFilter(filter);
+        this.props.setVisibilityFilter(filter);
     }
 
     render() {
@@ -31,7 +31,7 @@ class Filter extends Component {
                             className="badge">{getCompletedTodos(todos).completedTodos}</span> COMPLETED</Link>
                     </div>
                     <button className='btn btn-default btn-sm pull-right'
-                            onClick={this.onFilterChange.bind(this, 'REMOVE COMPLETED')}>REMOVE COMPLETED <span
+                            onClick={this.props.removeCompletedTodo}>REMOVE COMPLETED <span
                         className="badge">{getCompletedTodos(todos).completedTodos}</span></button>
                     <hr/>
                 </div>

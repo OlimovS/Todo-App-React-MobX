@@ -9,14 +9,10 @@ import {routerReducer} from 'react-router-redux'
 
 //import sub reducers
 import todos from './todos';
-import nowShowing from './nowShowing';
-import isDublicate from './isDublicate';
-import allCompleted from './allCompleted';
+import visibilityFilter from './visibilityFilter';
 
 const rootReducer = combineReducers({
-    nowShowing,
-    allCompleted,
-    isDublicate,
+    visibilityFilter,
     todos,
     routing: routerReducer
 });

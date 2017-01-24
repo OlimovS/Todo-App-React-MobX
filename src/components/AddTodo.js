@@ -11,7 +11,7 @@ class AddTodo extends Component {
         e.preventDefault();
         const inputValue = this.refs.todoInput.value.trim();
         if (inputValue) {
-            this.props.handleOnSubmit(inputValue);
+            this.props.addTodo(inputValue);
             this.refs.addTodoForm.reset();
         }
     }

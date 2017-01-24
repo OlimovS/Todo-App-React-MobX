@@ -6,9 +6,7 @@ import App from './App';
 
 function mapStateToProps(state) {
     return {
-        nowShowing: state.nowShowing,
-        allCompleted: state.allCompleted,
-        isDublicate: state.isDublicate,
+        visibilityFilter: state.visibilityFilter,
         todos: state.todos
     }
 }

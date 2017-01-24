@@ -7,7 +7,7 @@ import './index.css';
 import {Provider} from'react-redux';
 import store, {history} from './store/store';
 
-ReactDOM.render(
+const router = (
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={Main}>
@@ -17,6 +17,7 @@ ReactDOM.render(
                 <IndexRedirect to='/all'/>
             </Route>
         </Router>
-    </Provider>,
-    document.getElementById('root')
+    </Provider>
 );
+
+ReactDOM.render(router, document.getElementById('root'));

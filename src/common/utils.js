@@ -14,7 +14,7 @@ export function getCompletedTodos(todos) {
 }
 
 export function getTodoItem(todoId, _callBack) {
-    return this.state.todos.map((todo) => {
+    return this.props.todos.map((todo) => {
         if (todoId === todo.id || !todoId) {
             return _callBack(todo);
         }

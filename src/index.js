@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
-import App from './components/App';
+import {Router, Route, IndexRedirect} from 'react-router';
+import Main from './components/Main';
 import './index.css';
 
+import {Provider} from'react-redux';
+import store, {history} from './store/store';
+
 ReactDOM.render(
-    <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            <Route path="/all"/>
-            <Route path="/active"/>
-            <Route path="/completed"/>
-            <IndexRedirect to='/all'/>
-        </Route>
-    </Router>,
+    <Provider store={store}>
+        <Router history={history}>
+            <Route path="/" component={Main}>
+                <Route path="/all"/>
+                <Route path="/active"/>
+                <Route path="/completed"/>
+                <IndexRedirect to='/all'/>
+            </Route>
+        </Router>
+    </Provider>,
     document.getElementById('root')
 );

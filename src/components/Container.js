@@ -24,7 +24,7 @@ class Container extends Component {
         const {todos} = this.props;
 
         // Filter todos list according to the filter(all, active or completed) selected from UI.
-        const filterTodo = todos.filter(function (todo) {
+        const filterTodo = todos.filter(todo => {
             switch (this.props.visibilityFilter) {
                 case FILTERS.COMPLETED:
                     return todo.completed;
@@ -36,14 +36,10 @@ class Container extends Component {
         }, this);
 
         // created array of todos text.
-        const todoTextArr = this.props.todos.map(function (item) {
-            return item.text
-        });
+        const todoTextArr = this.props.todos.map(item => item.text);
 
         // Checking for duplicate item from todosTextArr and enable the warning alert box.
-        let isDuplicate = todoTextArr.some(function (item, idx) {
-            return todoTextArr.indexOf(item) !== idx
-        });
+        let isDuplicate = todoTextArr.some((item, id) => todoTextArr.indexOf(item) !== id);
 
         const renderWarning = (
             <div className="alert alert-warning"><strong>WARNING - </strong> Todo List contain duplicate items. Please

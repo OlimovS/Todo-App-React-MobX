@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import autoBind from 'react-autobind';
 import Todo from './Todo';
 
 class TodoList extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         autoBind(this);
     }
 
     // rendering todo list UI
-    render(){
+    render() {
         return (
             <ul className="list-group">
                 {
                     this.props.filterTodo.map((todo, index) => {
-                       return <Todo key={index} index={index} todo={todo} {...this.props} />
+                        return <Todo key={index} index={index} todo={todo} {...this.props} />
                     })
                 }
             </ul>

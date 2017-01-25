@@ -1,9 +1,11 @@
 import uuidV1 from 'uuid/v1';
-import {getCompletedTodos} from './../common/utils';
+import {getCompletedTodos, ACTION_TYPES} from './../common/utils';
 
 function todos(state = [], action) {
     switch (action.type) {
-        case 'ADD_TODO':
+
+        //Add new todo
+        case ACTION_TYPES.ADD_TODO:
             return [
                 ...state,
                 {
@@ -13,12 +15,16 @@ function todos(state = [], action) {
                     isEdit: false
                 }
             ];
-        case 'DELETE_TODO':
+
+        // Delete todo
+        case ACTION_TYPES.DELETE_TODO:
             return [
                 ...state.slice(0, action.id),
                 ...state.slice(action.id + 1)
             ];
-        case 'TOGGLE_TODO':
+
+        // Toggle todo
+        case ACTION_TYPES.TOGGLE_TODO:
             return state.map((todo) => {
                 if (todo.id === action.id) {
                     return Object.assign({}, todo, {
@@ -27,16 +33,22 @@ function todos(state = [], action) {
                 }
                 return todo;
             });
-        case 'TOGGLE_ALL_TODO':
+
+        // Toggle all todo
+        case ACTION_TYPES.TOGGLE_ALL_TODO:
             const activeTodos = getCompletedTodos(state).activeTodos;
             return state.map((todo) => {
                 return Object.assign({}, todo, {
                     completed: !!activeTodos
                 });
             });
-        case 'REMOVE_COMPLETED_TODO':
+
+        // Remove completed todos
+        case ACTION_TYPES.REMOVE_COMPLETED_TODO:
             return state.filter(todo => !todo.completed);
-        case 'EDIT_TODO':
+
+        // Enabling edit todo input
+        case ACTION_TYPES.EDIT_TODO:
             return state.map((todo) => {
                 if (todo.id === action.id) {
                     return Object.assign({}, todo, {
@@ -45,7 +57,9 @@ function todos(state = [], action) {
                 }
                 return todo;
             });
-        case 'CANCEL_EDITING_TODO':
+
+        // Canceling edit todo
+        case ACTION_TYPES.CANCEL_EDITING_TODO:
             return state.map((todo) => {
                 if (todo.id === action.id) {
                     return Object.assign({}, todo, {
@@ -54,7 +68,9 @@ function todos(state = [], action) {
                 }
                 return todo;
             });
-        case 'SAVE_TODO':
+
+        // Save edited todo
+        case ACTION_TYPES.SAVE_TODO:
             return state.map((todo) => {
                 if (todo.id === action.id) {
                     return Object.assign({}, todo, {
@@ -64,6 +80,8 @@ function todos(state = [], action) {
                 }
                 return todo;
             });
+
+        // return default state in case of no matched action found.
         default:
             return state;
     }

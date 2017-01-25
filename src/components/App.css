@@ -196,14 +196,14 @@ input.todo-checkbox:disabled:after {
     margin-left: 10px;
 }
 
-.todo-alert {
+.todo-footer {
     font-family: Arial;
     text-align: center;
     font-size: 11px;
     color: #cccccc;
 }
 
-.todo-alert strong {
+.todo-footer a {
     color: #666;
 }
 

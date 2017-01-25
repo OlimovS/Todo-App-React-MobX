@@ -7,15 +7,20 @@ class AddTodo extends Component {
         autoBind(this);
     }
 
+    // Handle submit event whenever user enter new todoItem
     handleSubmit(e) {
         e.preventDefault();
-        const inputValue = this.refs.todoInput.value.trim();
-        if (inputValue) {
-            this.props.addTodo(inputValue);
+        //grabbing new todo text using refs.
+        const text = this.refs.todoInput.value.trim();
+        if (text) {
+            //trigger action to add newTodo.
+            this.props.addTodo(text);
+            //reset form after submitted newTodo.
             this.refs.addTodoForm.reset();
         }
     }
 
+    // Render add todo form
     render() {
         return (
             <form ref="addTodoForm" onSubmit={this.handleSubmit} className="add-todo-form">

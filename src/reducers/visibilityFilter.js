@@ -1,9 +1,13 @@
-import {FILTERS_TODO} from './../common/utils';
+import {FILTERS, ACTION_TYPES} from './../common/utils';
 
-function visibilityFilter(state = FILTERS_TODO.ALL, action) {
+function visibilityFilter(state = FILTERS.ALL, action) {
     switch (action.type) {
-        case 'VISIBILITY_FILTER':
+
+        // Set visibility filter
+        case ACTION_TYPES.VISIBILITY_FILTER:
             return action.filter;
+
+        // return default state in case of no matched action found
         default:
             return state;
     }

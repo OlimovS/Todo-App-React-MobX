@@ -8,26 +8,32 @@ class Todo extends Component {
         autoBind(this);
     }
 
+    // handling toggle todos action
     handleToggleTodo() {
         this.props.toggleTodo(this.props.todo.id);
     }
 
+    // handling remove todo action
     handleRemoveTodo() {
         this.props.deleteTodo(this.props.index);
     }
 
+    // handling edit todo action
     handleEditTodo() {
         this.props.editTodo(this.props.todo.id);
     }
 
+    // handling save the edited todo action
     handleSaveTodo() {
         this.props.saveTodo(this.props.todo.id, this.refs.editTodo.value)
     }
 
+    // handling cancel edit todo action
     handleCancelTodo() {
         this.props.cancelEditTodo(this.props.todo.id);
     }
 
+    // setting up completed class active on completed todos
     getClassNames() {
         return className({
             'list-group-item': true,
@@ -37,16 +43,19 @@ class Todo extends Component {
         });
     }
 
+    // handling double click event to enable the edit mode of todo item
     handleDoubleClick(e) {
         e.preventDefault();
         this.handleEditTodo();
     }
 
+    // handling submit event on enter key press
     handleEditSubmit(e) {
         e.preventDefault();
         this.handleSaveTodo();
     }
 
+    // handling cancle editing todo on ESC key press
     handleKeyDown(event) {
         // ESCAPE_KEY = 27;
         if (event.which === 27) {
@@ -54,6 +63,7 @@ class Todo extends Component {
         }
     }
 
+    // render todo items UI
     render() {
         const {todo} = this.props;
         let actionBtn = (

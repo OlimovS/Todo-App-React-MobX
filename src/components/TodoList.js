@@ -7,6 +7,8 @@ class TodoList extends Component {
         super(props);
         autoBind(this);
     }
+
+    // rendering todo list UI
     render(){
         return (
             <ul className="list-group">

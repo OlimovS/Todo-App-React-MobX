@@ -4,7 +4,8 @@ import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import Filter from './Filter';
 import Footer from './Footer';
-import {getCompletedTodos, FILTERS} from './../common/utils';
+import Alert from './Alert';
+import {getCompletedTodos, FILTERS, WARNING_MSG} from './../common/utils';
 import './App.css';
 
 class Container extends Component {
@@ -41,11 +42,6 @@ class Container extends Component {
         // Checking for duplicate item from todosTextArr and enable the warning alert box.
         let isDuplicate = todoTextArr.some((item, id) => todoTextArr.indexOf(item) !== id);
 
-        const renderWarning = (
-            <div className="alert alert-warning"><strong>WARNING - </strong> Todo List contain duplicate items. Please
-                remove duplicate item/items</div>
-        );
-
         return (
             <div className="container">
                 <div className="row">
@@ -53,7 +49,7 @@ class Container extends Component {
                         <div className="filter-todo">
                             <Filter {...this.props}/>
                         </div>
-                        {isDuplicate ? renderWarning : ''}
+                        {isDuplicate ? <Alert message={WARNING_MSG}/> : ''}
                         <div className="panel panel-warning todo-panel">
                             <div className="panel-heading">
                                 <div className="toggle-all">

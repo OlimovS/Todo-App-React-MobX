@@ -16,6 +16,8 @@ export const ACTION_TYPES = {
     VISIBILITY_FILTER: 'VISIBILITY_FILTER'
 };
 
+export const WARNING_MSG = 'Todo List contain duplicate items. Please remove duplicate item/items';
+
 export function getCompletedTodos(todos) {
     const activeTodos = todos.reduce((accum, todo) => {
         return todo.completed ? accum : accum + 1;

@@ -200,11 +200,16 @@ input.todo-checkbox:disabled:after {
     font-family: Arial;
     text-align: center;
     font-size: 11px;
-    color: #cccccc;
+    color: #b9b8b8;
 }
 
-.todo-footer a {
+.todo-footer strong a {
     color: #666;
+    text-decoration: none;
+}
+.todo-footer a {
+    color: #b9b8b8;
+    text-decoration: underline;
 }
 
 @keyframes App-logo-spin {

@@ -1,4 +1,4 @@
-# Todo App - React Js
+# Todo App - React Js + Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
@@ -8,6 +8,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## Table of Contents
 
 - [Available Scripts](#available-scripts)
+  - `npm install` to install all dependencies
   - [npm start](#npm-start)
   - [npm test](#npm-test)
   - [npm run build](#npm-run-build)

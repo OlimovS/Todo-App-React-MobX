@@ -4,8 +4,7 @@ import {Link} from 'react-router';
 import {inject, observer} from 'mobx-react';
 import {FILTERS} from './../common/utils';
 
-@inject('store')
-@observer
+@inject('store') @observer
 class Filter extends Component {
     constructor(props) {
         super(props);

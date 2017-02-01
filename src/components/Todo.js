@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import autoBind from 'react-autobind';
+import {inject, observer} from 'mobx-react';
 import className from 'classnames';
 
+@inject('store') @observer
 class Todo extends Component {
     constructor(props) {
         super(props);

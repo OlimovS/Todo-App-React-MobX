@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import autoBind from 'react-autobind';
+import {inject, observer} from 'mobx-react';
 
+@inject('store') @observer
 class AddTodo extends Component {
     constructor(props) {
         super(props);

@@ -49,13 +49,13 @@ class TodoStore {
     }
 
     // Set Filter
-    @action setVisibilityFilter(filter) {
+    @action('SET VISIBILITY FILTER') setVisibilityFilter(filter) {
         this.visibilityFilter = filter;
     }
 
     // Add Todos
-    @action addTodo(text) {
-        this.todos = [
+    @action('ADD TODO') addTodo(text) {
+        return [
             ...this.todos,
             {
                 id: uuidV1(),
@@ -67,7 +67,7 @@ class TodoStore {
     }
 
     // Toggle Todos
-    @action toggleTodo(todoId) {
+    @action('TOGGLE TODO') toggleTodo(todoId) {
         this.todos = this.todos.map((todo) => {
             if (todo.id === todoId) {
                 return Object.assign({}, todo, {
@@ -79,7 +79,7 @@ class TodoStore {
     }
 
     // Toggle All Todos
-    @action toggleTodoAll() {
+    @action('TOGGLE ALL TODOS') toggleTodoAll() {
         const activeTodos = this.getTodoStatus.activeTodos;
         this.todos = this.todos.map((todo) => {
             return Object.assign({}, todo, {
@@ -89,12 +89,12 @@ class TodoStore {
     }
 
     // Remove Completed Todos
-    @action removeCompletedTodo() {
+    @action('REMOVE COMPLETED TODO') removeCompletedTodo() {
         this.todos = this.todos.filter(todo => !todo.completed);
     }
 
     // Delete Todos
-    @action deleteTodo(todoId) {
+    @action('DELETE TODO') deleteTodo(todoId) {
         this.todos = [
             ...this.todos.slice(0, todoId),
             ...this.todos.slice(todoId + 1)
@@ -102,7 +102,7 @@ class TodoStore {
     }
 
     // Edit Todos
-    @action editTodo(todoId) {
+    @action('EDIT TODO') editTodo(todoId) {
         this.todos = this.todos.map((todo) => {
             if (todo.id === todoId) {
                 return Object.assign({}, todo, {
@@ -114,7 +114,7 @@ class TodoStore {
     }
 
     // Cancel Edit Todos
-    @action cancelEditTodo(todoId) {
+    @action('CANCEL EDIT TODO') cancelEditTodo(todoId) {
         this.todos = this.todos.map((todo) => {
             if (todo.id === todoId) {
                 return Object.assign({}, todo, {
@@ -126,7 +126,7 @@ class TodoStore {
     }
 
     // Save Todos
-    @action saveTodo(todoId, text) {
+    @action('SAVE TODO') saveTodo(todoId, text) {
         this.todos = this.todos.map((todo) => {
             if (todo.id === todoId) {
                 return Object.assign({}, todo, {

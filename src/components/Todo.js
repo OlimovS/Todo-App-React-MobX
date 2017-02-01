@@ -10,27 +10,27 @@ class Todo extends Component {
 
     // handling toggle todos action
     handleToggleTodo() {
-        this.props.toggleTodo(this.props.todo.id);
+        this.props.store.toggleTodo(this.props.todo.id);
     }
 
     // handling remove todo action
     handleRemoveTodo() {
-        this.props.deleteTodo(this.props.index);
+        this.props.store.deleteTodo(this.props.index);
     }
 
     // handling edit todo action
     handleEditTodo() {
-        this.props.editTodo(this.props.todo.id);
+        this.props.store.editTodo(this.props.todo.id);
     }
 
     // handling save the edited todo action
     handleSaveTodo() {
-        this.props.saveTodo(this.props.todo.id, this.refs.editTodo.value)
+        this.props.store.saveTodo(this.props.todo.id, this.refs.editTodo.value)
     }
 
     // handling cancel edit todo action
     handleCancelTodo() {
-        this.props.cancelEditTodo(this.props.todo.id);
+        this.props.store.cancelEditTodo(this.props.todo.id);
     }
 
     // setting up completed class active on completed todos

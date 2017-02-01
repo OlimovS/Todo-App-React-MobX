@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import autoBind from 'react-autobind';
 import {Link} from 'react-router';
-import {getCompletedTodos, FILTERS} from './../common/utils';
+import {inject, observer} from 'mobx-react';
+import {FILTERS} from './../common/utils';
 
+@inject('store')
+@observer
 class Filter extends Component {
     constructor(props) {
         super(props);
@@ -11,18 +14,18 @@ class Filter extends Component {
 
     // handling visibility filter action.
     handleFilterChange(filter) {
-        this.props.setVisibilityFilter(filter);
+        this.props.store.setVisibilityFilter(filter);
     }
 
     //handle remove completed todos action
-    handleRemoveTodo(){
-        this.props.removeCompletedTodo();
+    handleRemoveTodo() {
+        this.props.store.removeCompletedTodo();
     }
 
-    //rendering filter UI
     render() {
         // destructing todos items from props
-        let {todos} = this.props;
+        let {todos, getTodoStatus} = this.props.store;
+
         if (todos.length) {
             var filtersElm = (
                 <div>
@@ -32,14 +35,14 @@ class Filter extends Component {
                             className="badge">{todos.length}</span> ALL</Link>
                         <Link to="/active" activeClassName={'btn-warning'} className="btn btn-default"
                               onClick={this.handleFilterChange.bind(this, FILTERS.ACTIVE)}><span
-                            className="badge">{getCompletedTodos(todos).activeTodos}</span> ACTIVE</Link>
+                            className="badge">{getTodoStatus.activeTodos}</span> ACTIVE</Link>
                         <Link to="/completed" activeClassName={'btn-warning'} className="btn btn-default"
                               onClick={this.handleFilterChange.bind(this, FILTERS.COMPLETED)}><span
-                            className="badge">{getCompletedTodos(todos).completedTodos}</span> COMPLETED</Link>
+                            className="badge">{getTodoStatus.completedTodos}</span> COMPLETED</Link>
                     </div>
                     <button className='btn btn-default btn-sm pull-right'
                             onClick={this.handleRemoveTodo.bind(this)}>REMOVE COMPLETED <span
-                        className="badge">{getCompletedTodos(todos).completedTodos}</span></button>
+                        className="badge">{getTodoStatus.completedTodos}</span></button>
                     <hr/>
                 </div>
             )

@@ -14,7 +14,7 @@ class AddTodo extends Component {
         const text = this.refs.todoInput.value.trim();
         if (text) {
             //trigger action to add newTodo.
-            this.props.addTodo(text);
+            this.props.store.addTodo(text);
             //reset form after submitted newTodo.
             this.refs.addTodoForm.reset();
         }

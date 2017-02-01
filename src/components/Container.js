@@ -5,9 +5,11 @@ import AddTodo from './AddTodo';
 import Filter from './Filter';
 import Footer from './Footer';
 import Alert from './Alert';
-import {getCompletedTodos, FILTERS, WARNING_MSG} from './../common/utils';
+import {inject, observer} from 'mobx-react';
+import {WARNING_MSG} from './../common/utils';
 import './App.css';
 
+@inject('store') @observer
 class Container extends Component {
     constructor(props) {
         super(props);
@@ -16,31 +18,13 @@ class Container extends Component {
 
     // handling toggle all todos action
     handleToggleAll() {
-        this.props.toggleTodoAll();
+        this.props.store.toggleTodoAll();
     }
 
     //rendering container component content
     render() {
         // Destructing todos from props.
-        const {todos} = this.props;
-
-        // Filter todos list according to the filter(all, active or completed) selected from UI.
-        const filterTodo = todos.filter(todo => {
-            switch (this.props.visibilityFilter) {
-                case FILTERS.COMPLETED:
-                    return todo.completed;
-                case FILTERS.ACTIVE:
-                    return !todo.completed;
-                default:
-                    return todo;
-            }
-        }, this);
-
-        // created array of todos text.
-        const todoTextArr = this.props.todos.map(item => item.text);
-
-        // Checking for duplicate item from todosTextArr and enable the warning alert box.
-        let isDuplicate = todoTextArr.some((item, id) => todoTextArr.indexOf(item) !== id);
+        const {todos, filterTodo, getTodoStatus, isDuplicateTodo} = this.props.store;
 
         return (
             <div className="container">
@@ -49,13 +33,13 @@ class Container extends Component {
                         <div className="filter-todo">
                             <Filter {...this.props}/>
                         </div>
-                        {isDuplicate ? <Alert message={WARNING_MSG}/> : ''}
+                        {isDuplicateTodo ? <Alert message={WARNING_MSG}/> : ''}
                         <div className="panel panel-warning todo-panel">
                             <div className="panel-heading">
                                 <div className="toggle-all">
                                     <input type="checkbox" className="todo-checkbox"
                                            disabled={!todos.length}
-                                           checked={!getCompletedTodos(todos).activeTodos && todos.length}
+                                           checked={!getTodoStatus.activeTodos && todos.length}
                                            onChange={this.handleToggleAll.bind(this)}
                                     />
                                 </div>

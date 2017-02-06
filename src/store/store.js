@@ -55,7 +55,7 @@ class TodoStore {
 
     // Add Todos
     @action('ADD TODO') addTodo(text) {
-        return [
+        this.todos = [
             ...this.todos,
             {
                 id: uuidV1(),
